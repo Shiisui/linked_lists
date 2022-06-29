@@ -1,17 +1,17 @@
+require 'pry-byebug'
 class LinkedList
     @@size = 0
     def initialize
-        @node = []
-        @node << Node.new
+        @list = []
+        @list << Node.new
     end
 
     def append(value)
-        if @node[@@size] != nil
-            @node[@@size].value(value)
-        elsif @@size < 2
-            @node[@@size-1].next_node(Node.new(value))
-        else
-            @node[@@size].next_node(Node.new(value))
+        if @list[@@size] != nil
+            @list[@@size].value(value)
+        else 
+            @list[@@size] = Node.new(value)
+            @list[@@size-1].next_node(@list[@@size])
         end
         
         @@size += 1
@@ -22,7 +22,7 @@ class LinkedList
     end
 
     def head
-        @node[0]
+        @list[0]
     end
 
    
@@ -41,13 +41,13 @@ class Node
         @next_node = next_node
     end
 end
-
 my_linked_list = LinkedList.new
 
-my_linked_list.append("George")
+my_linked_list.append("1")
 
-my_linked_list.append("Jerome")
+my_linked_list.append("2")
 
+my_linked_list.append("3")
 
 
 
