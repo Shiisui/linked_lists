@@ -4,11 +4,9 @@ class LinkedList
     def initialize
         @list = []
         @list[@@size] = Node.new
-        
     end
 
     def append(value)
-       
         if @list[@@size] != nil
             @list[@@size].value(value)
         else
@@ -16,8 +14,10 @@ class LinkedList
             @list[@@size].value(value)
             @list[@@size-1].next_node(@list[@@size])
         end
-        
         @@size += 1
+    end
+
+    def prepend(value)
         
     end
 
@@ -57,6 +57,16 @@ class LinkedList
             return p false
         end
     end
+
+    def to_s 
+        my_string = ""
+        @list.each do |node|
+            str = node.get_value
+            my_string <<"(#{str}) => "
+             
+        end
+        puts my_string + "nil"
+    end
    
 end
 
@@ -83,6 +93,7 @@ class Node
         @next_node
     end
 end
+
 my_linked_list = LinkedList.new
 
 my_linked_list.append("1")
@@ -91,3 +102,4 @@ my_linked_list.append("2")
 
 my_linked_list.append("3")
 
+my_linked_list.to_s
