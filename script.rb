@@ -17,8 +17,13 @@ class LinkedList
         @@size += 1
     end
 
-    def prepend(value)
+    def prepend_(value)
         
+        @list.unshift Node.new
+        @list[0].value(value)
+        @list[0].next_node(@list[1])
+       
+        @@size += 1
     end
 
     def size 
@@ -101,5 +106,7 @@ my_linked_list.append("1")
 my_linked_list.append("2")
 
 my_linked_list.append("3")
+
+my_linked_list.prepend_("5")
 
 my_linked_list.to_s
