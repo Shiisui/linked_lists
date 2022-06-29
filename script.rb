@@ -3,42 +3,84 @@ class LinkedList
     @@size = 0
     def initialize
         @list = []
-        @list << Node.new
+        @list[@@size] = Node.new
+        
     end
 
     def append(value)
+       
         if @list[@@size] != nil
             @list[@@size].value(value)
-        else 
-            @list[@@size] = Node.new(value)
+        else
+            @list[@@size] = Node.new
+            @list[@@size].value(value)
             @list[@@size-1].next_node(@list[@@size])
         end
         
         @@size += 1
+        
     end
 
     def size 
-        @@size
+        puts @@size
     end
 
     def head
-        @list[0]
+        puts @list[0]
+    end
+    
+    def tail 
+        puts @list[-1]
     end
 
+    def at(index)
+        puts @list[index]
+    end
+
+    def find(value)
+        @list.each_with_index do |node, index|
+            return puts "found at " "#{index}"if node.get_value == value
+        end
+        p nil
+    end
+
+    def pop
+        p @list
+        @list[-1] = nil
+        @list[-2].next_node(nil)
+        p @list
+    end
+
+    def contains?(value)
+        @list.each do |node|
+            return p true if node.get_value == value 
+            return p false
+        end
+    end
    
 end
 
 class Node 
-    def initialize(value=nil, next_node=nil)
-        @value = value 
-        @next_node = next_node
+    def initialize
+        @value = nil
+        @next_node = nil
     end
+    
     def value(value=nil)
         @value = value 
     end
 
+    def get_value 
+        @value
+    end
+
+    
     def next_node(next_node=nil) 
         @next_node = next_node
+    end
+    
+    def get_next_node 
+        @next_node
     end
 end
 my_linked_list = LinkedList.new
@@ -49,12 +91,3 @@ my_linked_list.append("2")
 
 my_linked_list.append("3")
 
-
-
-
-
-p my_linked_list.head
-
-
-
-p my_linked_list.size 
